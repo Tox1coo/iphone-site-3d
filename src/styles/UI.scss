@@ -12,14 +12,32 @@ html {
 }
 :is(#app, body, main, .loading) {
 	min-height: 100vh;
+	overflow-x: hidden;
 }
 
 /* text */
 
 .title {
 	font-size: 4rem;
-	color: $linearText;
+	color: $primary1;
+}
+
+.gradient-title {
+	@extend .title;
 	background: $linearText;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+
+.text {
+	font-size: 3rem;
+	color: $primary1;
+}
+
+.gradient-text {
+	@extend .text;
+	background: $linearText;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	line-height: 1.6;
 }

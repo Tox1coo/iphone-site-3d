@@ -3,12 +3,6 @@
 import { defineComponent } from "vue";
 export default defineComponent({
 	name: 'Loading',
-	setup() {
-	},
-	methods: {
-
-
-	}
 })
 </script>
 
@@ -22,7 +16,7 @@ export default defineComponent({
 				</svg>
 			</div>
 		</div>
-		<h1 class="title loading__title">Loading...</h1>
+		<h1 class="gradient-title loading__title">Loading...</h1>
 	</div>
 </template>
 
@@ -65,7 +59,8 @@ export default defineComponent({
 
 	&__title {
 		background-size: 200% auto;
-		animation: loading-logo 4s linear infinite;
+
+		animation: loading-text 2s linear infinite;
 	}
 
 }
@@ -81,6 +76,7 @@ export default defineComponent({
 	svg {
 		fill: #fff
 	}
+
 }
 
 @keyframes loading {
@@ -93,7 +89,7 @@ export default defineComponent({
 	}
 }
 
-@keyframes loading-logo {
+@keyframes loading-text {
 	to {
 		background-position: -200% center;
 	}

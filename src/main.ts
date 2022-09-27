@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import './styles/UI.scss'
+import './style.css'
 
 import App from './App.vue'
 import { TroisJSVuePlugin } from 'troisjs';
