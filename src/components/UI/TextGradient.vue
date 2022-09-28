@@ -33,7 +33,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .gradient-text {
-	transform: translateY(4rem);
+	transform: translateY(10rem);
 	animation-name: moveUp;
 	animation-timing-function: cubic-bezier(0.75, 0.82, 0.165, 1);
 }

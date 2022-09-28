@@ -19,14 +19,23 @@ html {
 
 .title {
 	font-size: 4rem;
-	color: $primary1;
+	color: $primaryTitle;
+	&--dark {
+		color: $primaryTitle2;
+	}
 }
 
 .gradient-title {
 	@extend .title;
-	background: $linearText;
+	background: $linear-gradient;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+	&--light {
+		font-size: 8rem;
+		background: $linear-gradient-light;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
 }
 
 .text {

@@ -5,19 +5,19 @@ export default defineComponent({
 	setup() {
 		const jobs = ref<HTMLElement>();
 		const messeges = [
-			{ text: "\"You can't connect the dots looking forward; you can only connect them looking backwards.", delay: 0.2 },
-			{ text: "So you have to trust that the dots will somehow connect in your future.", delay: 0.4 },
-			{ text: " You have to trust in something - your gut, destiny, life, karma, whatever.", delay: 0.6 },
-			{ text: "This approach has never let me down, and it has made all the difference in my life.\"", delay: 0.8 },
-			{ text: "Steve Jobs on life, 2005", delay: 1 },
+			{ text: "Flaw-Less Design With Strong Durability." },
+			{ text: "Flat-Edge Design With Toughest Smartphones Glass" },
 		];
-		return { messeges, jobs }
+		return { messeges, jobs };
 	},
 });
 </script>
 
 <template>
 	<section id="display" ref="display" class="display">
+		<div class="display__texts">
+			<Title :title="'Immersive Display'" class="gradient-title gradient-title--light"></Title>
+		</div>
 	</section>
 </template>
 
@@ -25,6 +25,17 @@ export default defineComponent({
 <style lang="scss">
 .display {
 	min-height: 200vh;
-	background-color: $primary1;
+	background-color: $primaryTitle2;
+
+	.display__texts {
+		position: relative;
+
+		.gradient-title {
+			position: absolute;
+			top: 5rem;
+			left: 8rem;
+			width: 30%;
+		}
+	}
 }
 </style>

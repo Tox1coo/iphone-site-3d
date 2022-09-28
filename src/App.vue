@@ -9,12 +9,14 @@ import VideoHeroSection from './components/Sections/VideoHeroSection.vue';
 import BatterySection from './components/Sections/BatterySection.vue';
 import DesignSection from './components/Sections/DesignSection.vue';
 import DisplaySection from './components/Sections/DisplaySection.vue';
+import ProcessorSection from './components/Sections/ProcessorSection.vue';
+
 export default defineComponent({
   setup() {
     const loading = useLoading();
     return { loading }
   },
-  components: { Scene1, SectionJobs, VideoHeroSection, BatterySection, DesignSection, DisplaySection }
+  components: { Scene1, SectionJobs, VideoHeroSection, BatterySection, DesignSection, DisplaySection, ProcessorSection }
 })
 </script>
 
@@ -22,7 +24,6 @@ export default defineComponent({
   <main v-show="loading.getIsLoading" class="main">
     <SectionJobs></SectionJobs>
     <Scene1></Scene1>
-
     <VideoHeroSection></VideoHeroSection>
 
     <DesignSection></DesignSection>

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { gsap } from "gsap"
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { defineComponent, onMounted, ref } from 'vue';
+import { defineComponent, onMounted, ref, onBeforeUnmount } from 'vue';
 import { useLoading } from "../../store/loading/loading"
 
 export default defineComponent({
@@ -18,7 +18,6 @@ export default defineComponent({
 		onMounted(() => {
 			gsap.registerPlugin(ScrollTrigger);
 			const interval = setInterval(() => {
-				console.log(loading.getIsLoading);
 
 				if (loading.getIsLoading) {
 					animate();
@@ -27,8 +26,9 @@ export default defineComponent({
 			}, 200)
 			window.addEventListener('resize', animate)
 
-			const end = `${jobs.value.clientHeight}`;
-			console.log(end);
+		})
+		onBeforeUnmount(() => {
+			window.removeEventListener('resize', animate)
 
 		})
 		function animate() {
@@ -42,13 +42,6 @@ export default defineComponent({
 		}
 		return { messeges, jobs }
 	},
-
-	mounted() {
-
-	},
-	methods: {
-
-	}
 });
 </script>
 

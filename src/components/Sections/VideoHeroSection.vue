@@ -1,17 +1,24 @@
 <script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
+import { gsap } from "gsap"
+import { defineComponent, ref, onMounted, onBeforeUnmount } from 'vue';
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
 export default defineComponent({
 	setup() {
 		const jobs = ref<HTMLElement>();
 		const texts = ref<HTMLElement>();
 
 		const messeges = [
-			{ text: 'SO COLD' },
-			{ text: 'SO BOLD' },
+			{ text: 'SO.COLD.' },
+			{ text: 'SO.BOLD.' },
 		];
 		onMounted(() => {
-
+			// window.addEventListener('resize', animate)
 		})
+		function animate() {
+
+		}
 		return { messeges, jobs, texts };
 	},
 });
@@ -23,7 +30,10 @@ export default defineComponent({
 			<video src="@/assets/iphone-video.mp4" preload="auto" autoplay="true" loop type="video/mp4" muted></video>
 
 			<div class="hero__texts" ref="heroTexts">
-				<TextGradient v-for="(text,index) in messeges" :key="index" :text="text.text"></TextGradient>
+				<h3 class="hero__title title">
+					Iphone 14 Pro Max
+				</h3>
+				<Title class="gradient-title" v-for="(text,index) in messeges" :key="index" :title="text.text"></Title>
 			</div>
 		</div>
 	</section>
@@ -52,5 +62,34 @@ export default defineComponent({
 		position: absolute;
 	}
 
+	&__texts {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		z-index: $zTop + 1;
+
+		.gradient-title {
+			font-size: 8rem;
+			position: absolute;
+			z-index: $zTop + 1;
+			top: 50%;
+			transform: translateY(-50%);
+			left: 30px;
+
+			&:last-child {
+				left: auto;
+				right: 30px;
+				background: $linear-gradient-back;
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+		}
+	}
+
+	&__title {
+		position: absolute;
+		top: 15px;
+		left: 15px;
+	}
 }
 </style>

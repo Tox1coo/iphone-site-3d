@@ -1,23 +1,65 @@
 <script lang="ts">
+import { gsap } from "gsap"
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { useLoading } from "../../store/loading/loading"
 
-import { defineComponent, ref } from 'vue';
+import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
 export default defineComponent({
 	setup() {
-		const jobs = ref<HTMLElement>();
+		const design = ref<HTMLElement>();
+		const designTitle1 = ref<HTMLElement>();
+		const designTitle2 = ref<HTMLElement>();
+		const loading = useLoading();
+
 		const messeges = [
-			{ text: "\"You can't connect the dots looking forward; you can only connect them looking backwards.", delay: 0.2 },
-			{ text: "So you have to trust that the dots will somehow connect in your future.", delay: 0.4 },
-			{ text: " You have to trust in something - your gut, destiny, life, karma, whatever.", delay: 0.6 },
-			{ text: "This approach has never let me down, and it has made all the difference in my life.\"", delay: 0.8 },
-			{ text: "Steve Jobs on life, 2005", delay: 1 },
+			{ text: "Flaw-Less Design With Strong Durability." },
+			{ text: "Flat-Edge Design With Toughest Smartphones Glass" },
 		];
-		return { messeges, jobs }
+		onMounted(() => {
+			const interval = setInterval(() => {
+
+				if (loading.getIsLoading) {
+					animate();
+					clearInterval(interval);
+				}
+			}, 200)
+			window.addEventListener('resize', animate)
+
+		})
+		onBeforeUnmount(() => {
+			window.removeEventListener('resize', animate)
+		})
+		function animate() {
+			let t1 = gsap
+				.timeline({
+					scrollTrigger: {
+						trigger: '.design__texts',
+						start: "top-=700 bottom",
+						end: "bottom top",
+						scrub: 1,
+					},
+				})
+				.fromTo('.design__title--first', { x: 0 }, { x: "10%" }, "key1")
+				.fromTo('.design__title--second', { x: 0 }, { x: "-10%" }, "key1");
+			return () => {
+				if (t1) t1.kill()
+			}
+		}
+		return {
+			messeges, design, designTitle1,
+			designTitle2
+		}
 	},
 });
 </script>
 
 <template>
 	<section id="design" ref="design" class="design">
+		<div class="design__texts">
+			<Title class="title title--dark design__title" v-for="(text, index) in messeges" :key="index"
+				:refs="`designTitle${index}`" :title="text.text"
+				:class="{'design__title--first': index===0, 'design__title--second': index===1}"></Title>
+		</div>
 	</section>
 </template>
 
@@ -26,5 +68,33 @@ export default defineComponent({
 .design {
 	width: 100vw;
 	height: 100vh;
+
+	&__texts {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		position: relative;
+
+		.title--dark {
+			width: 80%;
+			font-size: 9rem;
+			position: absolute;
+			top: 8rem;
+			left: 8rem;
+
+			&:last-child {
+				font-size: 7rem;
+				text-align: right;
+				bottom: 8rem;
+				top: auto;
+				right: 8rem;
+				left: auto;
+				z-index: $zTop + 1;
+			}
+
+		}
+	}
 }
 </style>
