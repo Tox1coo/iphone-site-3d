@@ -16,6 +16,8 @@ export default defineComponent({
 			{ text: "Flat-Edge Design With Toughest Smartphones Glass" },
 		];
 		onMounted(() => {
+			gsap.registerPlugin(ScrollTrigger)
+
 			const interval = setInterval(() => {
 
 				if (loading.getIsLoading) {
@@ -24,7 +26,6 @@ export default defineComponent({
 				}
 			}, 200)
 			window.addEventListener('resize', animate)
-
 		})
 		onBeforeUnmount(() => {
 			window.removeEventListener('resize', animate)
@@ -37,7 +38,7 @@ export default defineComponent({
 						start: "top-=700 bottom",
 						end: "bottom top",
 						scrub: 1,
-					},
+					}
 				})
 				.fromTo('.design__title--first', { x: 0 }, { x: "10%" }, "key1")
 				.fromTo('.design__title--second', { x: 0 }, { x: "-10%" }, "key1");

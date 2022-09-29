@@ -4,19 +4,23 @@ import { useLoading } from "../../store/loading/loading"
 import { gsap } from "gsap"
 import { defineComponent, ref, onMounted, onBeforeUnmount } from "vue";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { colorsData } from "../../store/colors/colors"
+
+import { Color } from "../../utils/interfaceAndTypes/interfaces";
+
 export default defineComponent({
 	setup() {
 		const loading = useLoading();
 		const sceneIphone = ref<HTMLElement>();
 		const camera = ref<HTMLElement>();
 		const scene = ref<HTMLElement>();
+		const color = colorsData()
+		let objectItem: unknown;
 		onMounted(() => {
 			gsap.registerPlugin(ScrollTrigger);
-			let fov: number = camera.value.fov;
 
-			fov = (1400 * 80) / window.innerWidth;
 
-			camera.value.camera.fov = fov;
+			camera.value.camera.fov = 55;
 
 			camera.value.camera.updateProjectionMatrix();
 			const interval = setInterval(() => {
@@ -47,23 +51,21 @@ export default defineComponent({
 						endTrigger: "#battery",
 						end: 'top top',
 						scrub: 1,
-						markers: true,
 					},
 				});
 				console.log(scene.value);
 
-				t1.fromTo(camera.value.camera.position, { y: 30 }, { y: 1.8 })
+				t1.fromTo(camera.value.camera.position, { y: 30 }, { y: 2.5 })
 					.to(scene.value.scene.rotation, { y: 0.8 })
 					.to(scene.value.scene.rotation, { y: 3.15 })
 					.to(scene.value.scene.position, { y: -2 })
 					.to(scene.value.scene.rotation, { z: 0.8 }, "key1")
-					.to(camera.value.camera.position, { z: 18, y: 2, x: 2 }, "key1")
+					.to(camera.value.camera.position, { z: 18, y: 4, x: 2 }, "key1")
 					.to(scene.value.scene.rotation, { y: 0, z: 0 }, "key2")
-					.to(camera.value.camera.position, { x: isDesktop ? -15 : 0 }, "key2")
-					.to(camera.value.camera.position, { z: 22 }, "key2")
+					.to(scene.value.scene.position, { y: 2 }, "key2")
+					.to(camera.value.camera.position, { x: isDesktop ? -12 : 0 }, "key2")
 					.to(scene.value.scene.rotation, { z: 0, y: 6.3 }, "key3")
-					.to(camera.value.camera.position, { z: 19 }, "key3")
-					.to(camera.value.camera.position, { x: isDesktop ? 15 : 0, y: 5 }, "key3");
+					.to(camera.value.camera.position, { x: isDesktop ? 8 : 0, y: 8, z: 15 }, "key3");
 
 				if (isMobile) {
 					camera.value.camera.fov = 70;
@@ -75,31 +77,56 @@ export default defineComponent({
 				}
 			});
 		}
-		return { loading, sceneIphone, camera, scene }
+		return { loading, sceneIphone, camera, scene, objectItem, color };
+	},
+	computed: {
+		getActiveColor(): Color {
+			return this.color.getActiveColor
+		}
 	},
 	methods: {
 		onLoadModel(object: unknown) {
+			/* 	const door30Bbox = new THREE.Box3();
+				door30Bbox.setFromObject(object.scene);
+				object.scene.traverse(function (child: any) {
+					if (child.type === 'Mesh') {
+						if (child.material.name === 'jFPFAvCbiqflbQV') { // тело
+							child.material.color = { r: 0.123, g: 0.32, b: 0.43 }
+						}
+					}
+					child.castShadow = true;
+					child.receiveShadow = true;
+
+				});
+				door30Bbox.setFromObject(object.scene); */
+			this.objectItem = object;
+			setTimeout(() => {
+				this.loading.updateIsLoading(true)
+			}, 2000);
+		},
+	},
+	watch: {
+		getActiveColor(activeColor: Color) {
+
+
 			const door30Bbox = new THREE.Box3();
-			door30Bbox.setFromObject(object.scene);
-			object.scene.traverse(function (child: any) {
+			door30Bbox.setFromObject(this.objectItem.scene);
+			this.objectItem.scene.traverse(function (child: any) {
 				if (child.type === 'Mesh') {
 					if (child.material.name === 'jFPFAvCbiqflbQV') { // тело
-						// child.material.color = { r: 0.123, g: 0.32, b: 0.43 }
+						console.log(child.material);
+
+						child.material.emissive = { r: +`0.${activeColor.rgbColor[0]}`, g: +`0.${activeColor.rgbColor[1]}`, b: +`0.${activeColor.rgbColor[2]}`, isColor: true }
+						console.log(child.material.emissive);
+
 					}
 				}
 				child.castShadow = true;
 				child.receiveShadow = true;
 
 			});
-			door30Bbox.setFromObject(object.scene);
-
-			setTimeout(() => {
-				this.loading.updateIsLoading(true)
-			}, 2000);
-
-
-		},
-
+			door30Bbox.setFromObject(this.objectItem.scene);
+		}
 	}
 })
 </script>

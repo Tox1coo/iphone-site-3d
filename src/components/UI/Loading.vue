@@ -61,6 +61,7 @@ export default defineComponent({
 		background-size: 200% auto;
 
 		animation: loading-text 2s linear infinite;
+		font-size: 4rem;
 	}
 
 }
