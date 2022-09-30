@@ -7,7 +7,6 @@ import { useLoading } from "../../store/loading/loading"
 export default defineComponent({
 	setup() {
 		const loading = useLoading();
-		const jobs = ref<HTMLElement>();
 		const messeges = [
 			{ text: "\"You can't connect the dots looking forward; you can only connect them looking backwards.", delay: 0.2 },
 			{ text: "So you have to trust that the dots will somehow connect in your future.", delay: 0.4 },
@@ -39,14 +38,17 @@ export default defineComponent({
 				pin: true,
 				pinSpacing: false
 			});
+			return () => {
+				if (tl) tl.kill()
+			}
 		}
-		return { messeges, jobs }
+		return { messeges }
 	},
 });
 </script>
 
 <template>
-	<section ref="jobs" class="jobs" id="jobs">
+	<section class="jobs" id="jobs">
 		<div class="jobs__texts">
 			<div v-for="(text,index) in messeges" class="jobs__text">
 				<TextGradient :key="index" :text="text.text" :animationDelay="text.delay">

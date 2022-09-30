@@ -34,7 +34,6 @@ export default defineComponent({
 			changeColor(colors[name]);
 		};
 		function animate() {
-			console.log(colorElem);
 
 			gsap.to('.colors', {
 				scrollTrigger: {
