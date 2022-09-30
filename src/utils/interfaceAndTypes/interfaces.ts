@@ -1,8 +1,7 @@
 
 export type Color = {
-	color: string,
+	color: string | number,
 	name: string,
-	rgbColor: Array<number>,
 	rgbaColorText: string
 }
 

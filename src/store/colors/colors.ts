@@ -3,10 +3,9 @@ import { Color } from "../../utils/interfaceAndTypes/interfaces";
 export const colorsData = defineStore({
 	id: 'colors',
 	state: () => ({
-		activeColors: {
-			color: "#5D4B73",
+		activeColors: <Color>{
+			color: 0x201B2B,
 			name: "deep Purple",
-			rgbColor: [93, 75, 115],
 			rgbaColorText: '93, 75, 115'
 		}
 	}),
@@ -21,7 +20,6 @@ export const colorsData = defineStore({
 			this.activeColors = {
 				color: activeColor.color,
 				name: activeColor.name,
-				rgbColor: activeColor.rgbColor,
 				rgbaColorText: activeColor.rgbaColorText
 			}
 

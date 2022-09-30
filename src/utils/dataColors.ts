@@ -2,36 +2,30 @@ import { dataColors } from "./interfaceAndTypes/interfaces";
 
 export const dataColor: dataColors = {
 	"deepPurple": {
-		color: '#5D4B73',
+		color: 0x201B2B,
 		name: 'deep Purple',
-		rgbColor: [93, 75, 115],
 		rgbaColorText: '93, 75, 115',
 	},
 	"midNight": {
-		color: '#31353A',
+		color: 0x222222,
 		name: 'Midnight',
-		rgbColor: [49, 53, 58],
 		rgbaColorText: '49, 53, 58',
 
 	},
 	"blue": {
-		color: '#C0CFDE',
+		color: 0x4682B4,
 		name: 'Blue',
-		rgbColor: [192, 207, 222],
 		rgbaColorText: '192, 207, 222',
-
 	},
 	"starLight": {
-		color: '#F0ECE8',
-		name: 'Starlight',
-		rgbColor: [240, 236, 232],
-		rgbaColorText: '240, 236, 232',
+		color: 0xffffff,
+		name: 'White',
+		rgbaColorText: '255, 255, 255',
 
 	},
 	"red": {
-		color: '#E11C2A',
+		color: 'red',
 		name: 'Red',
-		rgbColor: [225, 28, 42],
 		rgbaColorText: '225, 28, 42',
 
 	},

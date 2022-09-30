@@ -97,9 +97,10 @@ export default defineComponent({
 <template>
 	<section ref="colorElem" class="colors">
 		<div :style="{background: `rgba(${ activeColor.getActiveColor.rgbaColorText}, 0.8)`}" class="colors__left"></div>
-		<h1 :style="{color:activeColor.getActiveColor.color }" class="title title--dark colors__title">
+		<h1 class="title title--dark colors__title">
 			{{activeColor.getActiveColor.name}}</h1>
-		<div :style="{background: `rgba(${ activeColor.getActiveColor.rgbaColorText}, 0.5)`}" class="colors__right"></div>
+		<div :style="{background: `rgba(${ activeColor.getActiveColor.rgbaColorText}, 0.5)`}" class="colors__right">
+		</div>
 		<Scene2></Scene2>
 	</section>
 </template>

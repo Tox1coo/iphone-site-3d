@@ -5,7 +5,6 @@ import { gsap } from "gsap"
 import { defineComponent, ref, onMounted, onBeforeUnmount } from "vue";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { colorsData } from "../../store/colors/colors"
-
 import { Color } from "../../utils/interfaceAndTypes/interfaces";
 
 export default defineComponent({
@@ -86,19 +85,18 @@ export default defineComponent({
 	},
 	methods: {
 		onLoadModel(object: unknown) {
-			/* 	const door30Bbox = new THREE.Box3();
-				door30Bbox.setFromObject(object.scene);
-				object.scene.traverse(function (child: any) {
-					if (child.type === 'Mesh') {
-						if (child.material.name === 'jFPFAvCbiqflbQV') { // тело
-							child.material.color = { r: 0.123, g: 0.32, b: 0.43 }
-						}
+			const door30Bbox = new THREE.Box3();
+			door30Bbox.setFromObject(object.scene);
+			object.scene.traverse(function (child: unknown) {
+				if (child.type === 'Mesh') {
+					if (child.material.name === 'jFPFAvCbiqflbQV') {
+						child.material.color.set(0x201B2B)
 					}
-					child.castShadow = true;
-					child.receiveShadow = true;
+				}
+				child.castShadow = true;
+				child.receiveShadow = true;
 
-				});
-				door30Bbox.setFromObject(object.scene); */
+			});
 			this.objectItem = object;
 			setTimeout(() => {
 				this.loading.updateIsLoading(true)
@@ -107,18 +105,12 @@ export default defineComponent({
 	},
 	watch: {
 		getActiveColor(activeColor: Color) {
-
-
 			const door30Bbox = new THREE.Box3();
 			door30Bbox.setFromObject(this.objectItem.scene);
-			this.objectItem.scene.traverse(function (child: any) {
+			this.objectItem.scene.traverse(function (child: unknown) {
 				if (child.type === 'Mesh') {
-					if (child.material.name === 'jFPFAvCbiqflbQV') { // тело
-						console.log(child.material);
-
-						child.material.emissive = { r: +`0.${activeColor.rgbColor[0]}`, g: +`0.${activeColor.rgbColor[1]}`, b: +`0.${activeColor.rgbColor[2]}`, isColor: true }
-						console.log(child.material.emissive);
-
+					if (child.material.name === 'jFPFAvCbiqflbQV' || child.material.name === 'LJBezuBxKRoHnAp') {
+						child.material.color.set(activeColor.color)
 					}
 				}
 				child.castShadow = true;
