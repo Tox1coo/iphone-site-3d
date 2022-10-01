@@ -21,7 +21,6 @@ export const dataColor: dataColors = {
 		color: 0xffffff,
 		name: 'White',
 		rgbaColorText: '255, 255, 255',
-
 	},
 	"red": {
 		color: 'red',

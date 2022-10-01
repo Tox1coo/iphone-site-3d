@@ -42,9 +42,8 @@ export default defineComponent({
 					scrub: 1,
 				},
 			})
-				.to('#video1', { scale: 0.4 }, "key1")
-				.to('#video2', { scale: 0.6 }, "key1")
-				.to('#video3', { scale: 0.8 }, "key1")
+				.to('#video1', { scale: 0.4, 'border-radius': 50 }, "key1")
+				.to('#video2', { scale: 0.6, 'border-radius': 50 }, "key1")
 
 			const elementTitles = document.querySelectorAll('.camera__title');
 			elementTitles.forEach((element) => {
@@ -72,12 +71,11 @@ export default defineComponent({
 <template>
 	<section ref="camera" class="camera">
 		<div class="camera__videos">
-			<video id="video1" src="@/assets/vid-hor1.mp4" preload="none" autoplay="true" loop type="video/mp4"
+			<video id="video1" src="@/assets/vid-hor1.mp4" preload="auto" autoplay="true" loop type="video/mp4"
 				muted></video>
-			<video id="video2" src="@/assets/vid-hor2.mp4" preload="none" autoplay="true" loop type="video/mp4"
+			<video id="video2" src="@/assets/vid-hor2.mp4" preload="auto" autoplay="true" loop type="video/mp4"
 				muted></video>
-			<video id="video3" src="@/assets/vid-ver.mp4" preload="none" autoplay="true" loop type="video/mp4"
-				muted></video>
+
 		</div>
 		<div class="camera__titles">
 			<Title v-for="(title, index) in titles" :key="index" :title="title" class="title title--dark camera__title">
@@ -116,10 +114,12 @@ $countVideos: 3;
 	}
 
 	&__videos {
+		height: 100%;
+		width: 100%;
+
 		video {
 			position: relative;
 			z-index: $zTop + 1;
-			border-radius: 50px;
 		}
 	}
 }
@@ -130,24 +130,25 @@ $countVideos: 3;
 	}
 }
 
-@for $i from 0 through $countVideos {
+@for $i from 1 through $countVideos {
 	video:nth-child(#{$i}) {
 		position: absolute;
 
 		@if $i ==1 {
-
 			width: 100%;
+			height: 100%;
+			object-fit: cover
 		}
+
+
 
 		@else {
 			width: 100% - $i * 20;
 			z-index: $zTop - $i;
 		}
 
-
 		@if $i ==3 {
 			height: 80%;
-			top: 250px;
 		}
 	}
 }

@@ -12,13 +12,14 @@ import DisplaySection from './components/Sections/DisplaySection.vue';
 import ProcessorSection from './components/Sections/ProcessorSection.vue';
 import ColorSection from './components/Sections/ColorSection.vue';
 import CameraSection from './components/Sections/CameraSection.vue';
+import PricingSection from './components/Sections/PricingSection.vue';
 
 export default defineComponent({
   setup() {
     const loading = useLoading();
     return { loading }
   },
-  components: { Scene1, SectionJobs, VideoHeroSection, BatterySection, DesignSection, DisplaySection, ProcessorSection, ColorSection, CameraSection }
+  components: { Scene1, SectionJobs, VideoHeroSection, BatterySection, DesignSection, DisplaySection, ProcessorSection, ColorSection, CameraSection, PricingSection }
 })
 </script>
 
@@ -34,6 +35,7 @@ export default defineComponent({
     <BatterySection></BatterySection>
     <ColorSection></ColorSection>
     <CameraSection></CameraSection>
+    <PricingSection></PricingSection>
   </main>
   <Loading v-if="!loading.getIsLoading"></Loading>
 </template>

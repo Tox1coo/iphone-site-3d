@@ -1,5 +1,6 @@
 <script lang="ts">
 import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { useLoading } from "../../store/loading/loading"
 import { gsap } from "gsap"
 import { defineComponent, ref, onMounted, onBeforeUnmount } from "vue";
@@ -13,10 +14,37 @@ export default defineComponent({
 		const sceneIphone = ref<HTMLElement>();
 		const camera = ref<HTMLElement>();
 		const scene = ref<HTMLElement>();
-		const color = colorsData()
+		const color = colorsData();
+		const renderer = ref<HTMLElement>();
 		let objectItem: unknown;
+		let element: unknown;
 
-		return { loading, sceneIphone, camera, scene, color, objectItem }
+		onMounted(() => {
+
+
+			console.log(window);
+			const interval = setInterval(() => {
+
+				if (element === undefined || !element.offsetWidth) {
+					element = document.querySelector('.pricing__colors');
+					console.log(element.offsetWidth);
+
+					setTimeout(() => {
+						if (element.offsetWidth !== 0) {
+							renderer.value.renderer.setSize(element.offsetWidth, element.offsetHeight / 1.2, true)
+							console.dir(element.offsetWidth);
+
+							window.addEventListener('resize', renderer.value.renderer.setSize(element.offsetWidth, element.offsetHeight / 1.02, true))
+							clearInterval(interval);
+						}
+					}, 200);
+
+				}
+			}, 200)
+
+		})
+
+		return { loading, sceneIphone, camera, scene, color, objectItem, renderer }
 	},
 	methods: {
 		onLoadModel(object: unknown) {
@@ -37,12 +65,14 @@ export default defineComponent({
 		},
 	},
 	computed: {
-		getActiveColor(): Color {
-			return this.color.getActiveColor
+		getActiveColorPricing(): Color {
+			return this.color.getActiveColorPricing
 		}
 	},
 	watch: {
-		getActiveColor(activeColor: Color) {
+		getActiveColorPricing(activeColor: Color) {
+			console.log(activeColor);
+
 			const door30Bbox = new THREE.Box3();
 			door30Bbox.setFromObject(this.objectItem.scene);
 			this.objectItem.scene.traverse(function (child: unknown) {
@@ -64,12 +94,13 @@ export default defineComponent({
 
 <template>
 	<div id="phone-model" class="phone-colors">
-		<Renderer ref="renderer" resize="window" antialias alpha>
-			<Camera ref="camera" :position="{x:-4,y: 9.2, z: 6.5}"></Camera>
+		<Renderer ref="renderer" alpha orbit-ctrl>
+			<Camera ref="camera" :fov="50" :position="{y:0,z:3.5}"></Camera>
 			<Scene ref="scene">
 				<AmbientLight :distance="0.5" :position="{y:-50, x: -40, z: 20 }" :scale="{x:4, y:4, z:4}" :intensity="4" />
+				<PointLight />
 				<GltfModel ref="sceneIphone" @load="onLoadModel" src="./models/iphone2/scene.gltf"
-					:scale="{x: 70,y: 70,z: 70}" :rotation="{y:0, x:0,z:0}"></GltfModel>
+					:scale="{x: 15,y: 15,z: 15}" :position="{y:-1.4}"></GltfModel>
 			</Scene>
 		</Renderer>
 	</div>
@@ -78,6 +109,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 .phone-colors {
 	position: absolute;
-	transition: all 0.3s ease;
+	z-index: $zTop;
 }
 </style>

@@ -31,7 +31,7 @@ export default defineComponent({
 		})
 		let updateColor = (name: string) => {
 
-			changeColor(colors[name]);
+			changeColor(colors[name], 'updateActiveColor');
 		};
 		function animate() {
 
