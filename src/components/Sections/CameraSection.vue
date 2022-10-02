@@ -18,10 +18,7 @@ export default defineComponent({
 			}, 200)
 			window.addEventListener('resize', animate)
 		})
-		onBeforeUnmount(() => {
-			window.removeEventListener('resize', animate)
 
-		})
 
 		function animate() {
 			gsap.to('.camera', {
@@ -91,15 +88,16 @@ $countVideos: 3;
 
 .camera {
 	width: 100vw;
-	height: 100vh;
+	height: 100vh !important;
 	position: relative;
 	z-index: $zTop + 1;
 	overflow: hidden;
 	background-color: #fff;
 
+
+
 	&__titles {
 		width: 50%;
-		height: 100%;
 		top: 0;
 		right: 0;
 		display: flex;
@@ -107,6 +105,18 @@ $countVideos: 3;
 		align-items: center;
 		gap: 10px;
 		position: absolute;
+
+		@media(max-width: 1000px) {
+			top: auto;
+			right: auto;
+			bottom: 20px;
+			left: 50%;
+			transform: translateX(-50%);
+
+			.title {
+				font-size: 6rem;
+			}
+		}
 	}
 
 	&__title {
@@ -120,6 +130,7 @@ $countVideos: 3;
 		video {
 			position: relative;
 			z-index: $zTop + 1;
+			object-fit: cover;
 		}
 	}
 }
@@ -137,7 +148,7 @@ $countVideos: 3;
 		@if $i ==1 {
 			width: 100%;
 			height: 100%;
-			object-fit: cover
+
 		}
 
 

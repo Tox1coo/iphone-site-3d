@@ -25,10 +25,7 @@ export default defineComponent({
 			}, 200)
 			window.addEventListener('resize', animate)
 		})
-		onBeforeUnmount(() => {
-			window.removeEventListener('resize', animate)
 
-		})
 		let updateColor = (name: string) => {
 
 			changeColor(colors[name], 'updateActiveColor');
@@ -83,9 +80,7 @@ export default defineComponent({
 					onReverseCompleteParams: ['red'],
 				})
 
-			return () => {
-				if (t1) t1.kill();
-			}
+
 		}
 		return { colors, activeColor, loading, colorElem }
 	},
@@ -108,9 +103,10 @@ export default defineComponent({
 <style lang="scss" scoped>
 .colors {
 	display: flex;
-	width: 100vw;
+	width: 100vw !important;
 	position: relative;
 	overflow: hidden;
+
 
 	&__left {
 		display: inline-block;
@@ -130,6 +126,22 @@ export default defineComponent({
 		top: 40%;
 		transform: translate(-50%, -60%) rotate(-90deg);
 		text-transform: uppercase;
+	}
+
+	@media(max-width: 510px) {
+		&__left {
+			min-width: 100vw;
+		}
+
+		&__right {
+			display: none;
+		}
+
+		.title {
+			top: 20px;
+			text-transform: uppercase;
+			transform: translate(-50%, 0);
+		}
 	}
 }
 </style>

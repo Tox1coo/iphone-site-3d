@@ -11,7 +11,13 @@ export default defineComponent({
 			<TextBlock class="text text--small"
 				:text="'The Apple A16 Bionic features an Apple-designed 64-bit six-core CPU implementing ARMv8. 6-A (no SM4 of v8. 6, but with HCX) with two \'Everest\' high-performance cores running @3,46GHz and four \'Sawtooth\' energy-efficient cores running @2,02GHz'">
 			</TextBlock>
-			<img width="550" height="550" class="processor__photo" src="../../assets/chip.webp" alt="">
+			<picture>
+				<source srcset="../../assets/chip.webp" width="300" media="(max-width: 710px)" />
+
+				<source srcset="../../assets/chip.webp" width="400" media="(max-width: 1000px)" />
+
+				<img width="550" height="550" class="processor__photo" src="../../assets/chip.webp" alt="">
+			</picture>
 		</div>
 		<Title class="gradient-title gradient-title--light" :title="'FASTEST PROCESSOR'"></Title>
 	</section>
@@ -33,6 +39,19 @@ export default defineComponent({
 		align-items: center;
 		font-size: 2rem;
 		gap: 80px;
+
+		@media (max-width: 600px) {
+			flex-direction: column;
+			align-items: center;
+
+			img {
+				order: 0;
+			}
+
+			.text--small {
+				order: 1
+			}
+		}
 
 		.text {
 			flex: 0 1 32%;

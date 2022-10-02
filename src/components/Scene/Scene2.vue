@@ -79,5 +79,9 @@ export default defineComponent({
 .phone-colors {
 	position: absolute;
 	transition: all 0.3s ease;
+
+	@media(max-width: 510px) {
+		display: none;
+	}
 }
 </style>

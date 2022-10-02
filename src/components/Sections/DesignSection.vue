@@ -27,9 +27,7 @@ export default defineComponent({
 			}, 200)
 			window.addEventListener('resize', animate)
 		})
-		onBeforeUnmount(() => {
-			window.removeEventListener('resize', animate)
-		})
+
 		function animate() {
 			let t1 = gsap
 				.timeline({
@@ -70,6 +68,10 @@ export default defineComponent({
 	width: 100vw;
 	height: 100vh;
 
+	@media (max-width: 650px) {
+		height: 50vh;
+	}
+
 	&__texts {
 		width: 100%;
 		height: 100%;
@@ -86,7 +88,7 @@ export default defineComponent({
 			left: 8rem;
 
 			&:last-child {
-				font-size: 7rem;
+
 				text-align: right;
 				bottom: 8rem;
 				top: auto;
@@ -95,6 +97,9 @@ export default defineComponent({
 				z-index: $zTop + 1;
 			}
 
+			@media (max-width: 1270px) {
+				font-size: 6rem;
+			}
 		}
 	}
 }

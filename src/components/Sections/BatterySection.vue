@@ -19,9 +19,7 @@ export default defineComponent({
 			}, 200)
 			window.addEventListener('resize', animate)
 		});
-		onBeforeUnmount(() => {
-			window.removeEventListener('resize', animate)
-		})
+
 		function animate() {
 			const t1 = gsap.timeline({});
 
@@ -68,9 +66,17 @@ export default defineComponent({
 .battery {
 	min-height: 100vh;
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-evenly;
 	background-color: rgba($primary1, 0.2);
+
+	@media (max-width: 600px) {
+		flex-direction: column;
+		align-items: center;
+
+		text-align: center;
+	}
 
 	&__texts {
 		z-index: $zTop + 1;

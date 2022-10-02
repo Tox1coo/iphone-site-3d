@@ -24,9 +24,7 @@ export default defineComponent({
 			}, 200)
 			window.addEventListener('resize', animate)
 		});
-		onBeforeUnmount(() => {
-			window.removeEventListener('resize', animate)
-		});
+
 
 		function animate() {
 			let t1 = gsap.timeline({
@@ -37,8 +35,8 @@ export default defineComponent({
 					scrub: 1,
 				}
 			})
-				.fromTo('.gradient-title0', { x: 0 }, { x: '50%' }, "key1")
-				.fromTo('.gradient-title1', { x: 0 }, { x: '-50%' }, "key1")
+				.fromTo('.gradient-title0', { x: 0 }, { x: '20%' }, "key1")
+				.fromTo('.gradient-title1', { x: 0 }, { x: '-20%' }, "key1")
 			return () => {
 				if (t1) t1.kill()
 			}
@@ -82,6 +80,10 @@ export default defineComponent({
 			top: 5rem;
 			left: 8rem;
 			width: 30%;
+
+			@media (max-width: 910px) {
+				width: 50%;
+			}
 		}
 	}
 

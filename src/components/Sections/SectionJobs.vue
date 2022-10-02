@@ -26,10 +26,7 @@ export default defineComponent({
 			window.addEventListener('resize', animate)
 
 		})
-		onBeforeUnmount(() => {
-			window.removeEventListener('resize', animate)
 
-		})
 		function animate() {
 			const tl = gsap.timeline();
 			ScrollTrigger.create({
@@ -80,7 +77,7 @@ export default defineComponent({
 	}
 
 	&__text {
-		width: 50%;
+		width: 80%;
 		overflow: hidden;
 
 		&:last-child {

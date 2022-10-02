@@ -31,18 +31,16 @@ export default defineComponent({
 			}, 200)
 			window.addEventListener('resize', animate)
 		})
-		onBeforeUnmount(() => {
-			window.removeEventListener('resize', animate)
 
-		})
 		function animate() {
 			let mm = gsap.matchMedia();
 			mm.add({
-				isDesktop: `(min-width: 48em)`,
-				isMobile: `(max-width:48em`,
+				isDesktop: `(min-width: 900px)`,
+				isTablet: `(min-width: 510px) and (max-width: 900px)`,
+				isMobile: `(max-width:51em)`,
 			}, (context) => {
 
-				let { isDesktop, isMobile } = context.conditions;
+				let { isDesktop, isMobile, isTablet } = context.conditions;
 				let t1 = gsap.timeline({
 					scrollTrigger: {
 						trigger: "#phone-model",
@@ -59,12 +57,12 @@ export default defineComponent({
 					.to(scene.value.scene.rotation, { y: 3.15 })
 					.to(scene.value.scene.position, { y: -2 })
 					.to(scene.value.scene.rotation, { z: 0.8 }, "key1")
-					.to(camera.value.camera.position, { z: 18, y: 4, x: 2 }, "key1")
+					.to(camera.value.camera.position, { z: 19, y: isTablet ? 5 : 4, x: isTablet ? 4 : 2 }, "key1")
 					.to(scene.value.scene.rotation, { y: 0, z: 0 }, "key2")
 					.to(scene.value.scene.position, { y: 2 }, "key2")
-					.to(camera.value.camera.position, { x: isDesktop ? -12 : 0 }, "key2")
+					.to(camera.value.camera.position, { z: 21, x: isDesktop ? -10.5 : isTablet ? -5 : 0 }, "key2")
 					.to(scene.value.scene.rotation, { z: 0, y: 6.3 }, "key3")
-					.to(camera.value.camera.position, { x: isDesktop ? 8 : 0, y: 8, z: 15 }, "key3");
+					.to(camera.value.camera.position, { x: isDesktop ? 6 : isTablet ? 4 : 0, y: 8, z: 15 }, "key3");
 
 				if (isMobile) {
 					camera.value.camera.fov = 70;

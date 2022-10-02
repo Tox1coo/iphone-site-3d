@@ -1,8 +1,8 @@
 <script lang="ts">
-import { gsap } from "gsap"
-import { defineComponent, ref, onMounted, onBeforeUnmount } from 'vue';
-import ScrollTrigger from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
+
+import { defineComponent, ref } from 'vue';
+
+
 
 export default defineComponent({
 	setup() {
@@ -13,12 +13,6 @@ export default defineComponent({
 			{ text: 'SO.COLD.' },
 			{ text: 'SO.BOLD.' },
 		];
-		onMounted(() => {
-			// window.addEventListener('resize', animate)
-		})
-		function animate() {
-
-		}
 		return { messeges, jobs, texts };
 	},
 });
@@ -82,6 +76,10 @@ export default defineComponent({
 				background: $linear-gradient-back;
 				-webkit-background-clip: text;
 				-webkit-text-fill-color: transparent;
+			}
+
+			@media (max-width: 1270px) {
+				font-size: 6rem;
 			}
 		}
 	}

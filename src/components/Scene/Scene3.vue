@@ -20,19 +20,14 @@ export default defineComponent({
 		let element: unknown;
 
 		onMounted(() => {
-
-
-			console.log(window);
 			const interval = setInterval(() => {
 
 				if (element === undefined || !element.offsetWidth) {
 					element = document.querySelector('.pricing__colors');
-					console.log(element.offsetWidth);
 
 					setTimeout(() => {
 						if (element.offsetWidth !== 0) {
 							renderer.value.renderer.setSize(element.offsetWidth, element.offsetHeight / 1.2, true)
-							console.dir(element.offsetWidth);
 
 							window.addEventListener('resize', renderer.value.renderer.setSize(element.offsetWidth, element.offsetHeight / 1.02, true))
 							clearInterval(interval);
@@ -95,12 +90,12 @@ export default defineComponent({
 <template>
 	<div id="phone-model" class="phone-colors">
 		<Renderer ref="renderer" alpha orbit-ctrl>
-			<Camera ref="camera" :fov="50" :position="{y:0,z:3.5}"></Camera>
+			<Camera ref="camera" :fov="45.2" :position="{y:0,z:3.5}"></Camera>
 			<Scene ref="scene">
 				<AmbientLight :distance="0.5" :position="{y:-50, x: -40, z: 20 }" :scale="{x:4, y:4, z:4}" :intensity="4" />
 				<PointLight />
 				<GltfModel ref="sceneIphone" @load="onLoadModel" src="./models/iphone2/scene.gltf"
-					:scale="{x: 15,y: 15,z: 15}" :position="{y:-1.4}"></GltfModel>
+					:scale="{x: 17,y: 15,z: 15}" :position="{y:-1.4}"></GltfModel>
 			</Scene>
 		</Renderer>
 	</div>

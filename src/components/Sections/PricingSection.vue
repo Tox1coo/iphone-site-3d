@@ -68,6 +68,7 @@ export default defineComponent({
 	height: 100vh;
 	z-index: $zTop + 1;
 	transition: background 0.4s ease 0s;
+	overflow: hidden;
 
 	&__colors {
 		position: relative;
