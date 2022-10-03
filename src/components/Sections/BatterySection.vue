@@ -76,6 +76,9 @@ export default defineComponent({
 		align-items: center;
 
 		text-align: center;
+
+		padding-left: 10px;
+		padding-right: 10px;
 	}
 
 	&__texts {

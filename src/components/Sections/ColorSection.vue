@@ -126,6 +126,14 @@ export default defineComponent({
 		top: 40%;
 		transform: translate(-50%, -60%) rotate(-90deg);
 		text-transform: uppercase;
+
+		@media (max-width: 420px) {
+			font-size: 2.5rem !important;
+		}
+
+		@media (max-width: 380px) {
+			font-size: 2rem !important;
+		}
 	}
 
 	@media(max-width: 510px) {

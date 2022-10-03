@@ -26,6 +26,12 @@ html {
 	@media (max-width: 650px) {
 		font-size: 3.5rem !important;
 	}
+	@media (max-width: 420px) {
+		font-size: 3rem !important;
+	}
+	@media (max-width: 380px) {
+		font-size: 2.5rem !important;
+	}
 }
 
 .gradient-title {
@@ -49,6 +55,9 @@ html {
 	@media (max-width: 510px) {
 		font-size: 4rem !important;
 	}
+	@media (max-width: 420px) {
+		font-size: 3rem !important;
+	}
 }
 
 .lil-gui {
@@ -67,12 +76,18 @@ html {
 		@media (max-width: 510px) {
 			font-size: 0.68em !important;
 		}
+		@media (max-width: 420px) {
+			font-size: 0.5em !important;
+		}
 	}
 	&--price {
 		color: $primaryTitleDark;
 	}
 	@media (max-width: 810px) {
 		font-size: 2rem;
+	}
+	@media (max-width: 520px) {
+		font-size: 1.5rem;
 	}
 }
 
@@ -118,4 +133,8 @@ html {
 		}
 		color: #000;
 	}
+}
+
+section {
+	overflow: hidden;
 }

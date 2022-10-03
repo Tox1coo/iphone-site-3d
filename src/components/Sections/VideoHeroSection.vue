@@ -81,6 +81,14 @@ export default defineComponent({
 			@media (max-width: 1270px) {
 				font-size: 6rem;
 			}
+
+			@media (max-width: 420px) {
+				font-size: 3rem !important;
+			}
+
+			@media (max-width: 370px) {
+				font-size: 2.5rem !important;
+			}
 		}
 	}
 

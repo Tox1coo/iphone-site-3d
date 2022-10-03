@@ -50,7 +50,6 @@ export default defineComponent({
 						scrub: 1,
 					},
 				});
-				console.log(scene.value);
 
 				t1.fromTo(camera.value.camera.position, { y: 30 }, { y: 2.5 })
 					.to(scene.value.scene.rotation, { y: 0.8 })

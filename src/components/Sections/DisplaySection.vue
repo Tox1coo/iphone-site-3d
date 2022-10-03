@@ -84,6 +84,10 @@ export default defineComponent({
 			@media (max-width: 910px) {
 				width: 50%;
 			}
+
+			@media (max-width: 520px) {
+				left: 3rem;
+			}
 		}
 	}
 
@@ -93,6 +97,10 @@ export default defineComponent({
 		flex-direction: column;
 		justify-content: space-around;
 		padding: 5rem;
+
+		@media (max-width: 520px) {
+			padding: 2rem;
+		}
 	}
 
 	&__block {
@@ -124,7 +132,9 @@ export default defineComponent({
 			line-height: 1.5;
 			pointer-events: none;
 
-
+			@media (max-width: 520px) {
+				font-size: 2.5rem !important;
+			}
 		}
 	}
 }

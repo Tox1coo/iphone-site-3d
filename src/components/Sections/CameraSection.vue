@@ -39,8 +39,8 @@ export default defineComponent({
 					scrub: 1,
 				},
 			})
-				.to('#video1', { scale: 0.4, 'border-radius': 50 }, "key1")
-				.to('#video2', { scale: 0.6, 'border-radius': 50 }, "key1")
+				.to('#video1', { scale: 0.4, 'border-radius': 30 }, "key1")
+				.to('#video2', { scale: 0.6, 'border-radius': 30 }, "key1")
 
 			const elementTitles = document.querySelectorAll('.camera__title');
 			elementTitles.forEach((element) => {
@@ -110,8 +110,8 @@ $countVideos: 3;
 			top: auto;
 			right: auto;
 			bottom: 20px;
-			left: 50%;
-			transform: translateX(-50%);
+			left: 20%;
+			transform: translateX(-80%);
 
 			.title {
 				font-size: 6rem;

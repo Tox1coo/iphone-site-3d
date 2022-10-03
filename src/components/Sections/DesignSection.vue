@@ -100,6 +100,15 @@ export default defineComponent({
 			@media (max-width: 1270px) {
 				font-size: 6rem;
 			}
+
+			@media (max-width: 520px) {
+				left: 3rem;
+
+				&:last-child {
+
+					right: 3rem;
+				}
+			}
 		}
 	}
 }

@@ -38,5 +38,10 @@ export default defineComponent({
 		border: 2px solid #000;
 		transition: all 0.2s ease 0s;
 	}
+
+	@media (max-width: 600px) {
+		width: 30px;
+		height: 30px;
+	}
 }
 </style>

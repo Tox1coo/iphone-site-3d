@@ -89,11 +89,17 @@ export default defineComponent({
 		z-index: $zTop + 1;
 		position: absolute;
 		top: 50%;
-		left: 35%;
-		transform: translate(-65%, -50%);
+		left: 20%;
+		transform: translate(-80%, -50%);
 		display: flex;
 		flex-direction: column;
 		gap: 5px;
+
+		@media (max-width: 600px) {
+
+			left: 15%;
+			transform: translate(-85%, -50%);
+		}
 	}
 
 

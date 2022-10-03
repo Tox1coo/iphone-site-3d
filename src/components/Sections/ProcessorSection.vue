@@ -66,5 +66,11 @@ export default defineComponent({
 		text-align: center;
 		margin-top: 80px;
 	}
+
+	@media (max-width: 600px) {
+
+		padding-left: 10px;
+		padding-right: 10px;
+	}
 }
 </style>

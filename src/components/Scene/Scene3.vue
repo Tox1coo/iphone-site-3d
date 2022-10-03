@@ -36,7 +36,11 @@ export default defineComponent({
 
 				}
 			}, 200)
+			window.addEventListener('resize', () => {
+				renderer.value.renderer.setSize(element.offsetWidth, element.offsetHeight / 1.2, true)
 
+				window.addEventListener('resize', renderer.value.renderer.setSize(element.offsetWidth, element.offsetHeight / 1.02, true))
+			})
 		})
 
 		return { loading, sceneIphone, camera, scene, color, objectItem, renderer }
@@ -90,12 +94,12 @@ export default defineComponent({
 <template>
 	<div id="phone-model" class="phone-colors">
 		<Renderer ref="renderer" alpha orbit-ctrl>
-			<Camera ref="camera" :fov="45.2" :position="{y:0,z:3.5}"></Camera>
+			<Camera ref="camera" :fov="50" :position="{y:0,z:3.5}"></Camera>
 			<Scene ref="scene">
 				<AmbientLight :distance="0.5" :position="{y:-50, x: -40, z: 20 }" :scale="{x:4, y:4, z:4}" :intensity="4" />
 				<PointLight />
 				<GltfModel ref="sceneIphone" @load="onLoadModel" src="./models/iphone2/scene.gltf"
-					:scale="{x: 17,y: 15,z: 15}" :position="{y:-1.4}"></GltfModel>
+					:scale="{x: 20,y: 15,z: 15}" :position="{y:-1.4}"></GltfModel>
 			</Scene>
 		</Renderer>
 	</div>
